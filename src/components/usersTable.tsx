@@ -1,12 +1,58 @@
 import { FC } from "react";
+import {
+  CircularProgress,
+  TableContainer,
+  Paper,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from "@mui/material";
 import { useGetAllUsers } from "../api/getAllUsers";
-import { CircularProgress } from "@mui/material";
 
 export const UsersTable: FC = () => {
   const { data, isLoading } = useGetAllUsers();
-
   if (isLoading) return <CircularProgress />;
 
-  console.log(data);
-  return <div>hi</div>;
+  if (data?.results.length === 0)
+    return <div className="pt-10 px-10 w-full">No User is available</div>;
+
+  return (
+    <div className="pt-10 px-10 w-full">
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>User Id</TableCell>
+              <TableCell>FullName</TableCell>
+              <TableCell>Previous Value</TableCell>
+              <TableCell>New Value</TableCell>
+              <TableCell>Modified Date</TableCell>
+              <TableCell>UserName</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data?.results.map((user) => (
+              <TableRow
+                key={user.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {user.id}
+                </TableCell>
+                <TableCell>{user.fullName}</TableCell>
+                <TableCell>
+                  {user.previousValue ? user.previousValue : "N/A"}
+                </TableCell>
+                <TableCell>{user.newValue ? user.newValue : "N/A"}</TableCell>
+                <TableCell>{user.timestamp ? user.timestamp : "N/A"}</TableCell>
+                <TableCell>{user.userName ? user.userName : "N/A"}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  );
 };

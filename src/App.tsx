@@ -1,9 +1,11 @@
 import React from "react";
 import { UsersTable } from "./components/usersTable";
+import { CreateUserHeader } from "./components/createUserHeader";
 
 function App() {
   return (
-    <div>
+    <div className="flex flex-col items-center">
+      <CreateUserHeader />
       <UsersTable />
     </div>
   );
