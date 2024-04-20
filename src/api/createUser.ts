@@ -1,5 +1,5 @@
 import { SwrKey } from "../utility/SwrKey";
-import { FormValues } from "../validation/FormValidation";
+import { FormValues } from "../validation/formValidation";
 import api from "./index";
 import useSWRMutation from "swr/mutation";
 

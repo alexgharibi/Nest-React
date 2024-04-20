@@ -1,8 +1,8 @@
 import { Button, Modal, TextField, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { useFormik } from "formik";
-import { ActionButton } from "./ActionButton";
-import { FormValidation } from "../validation/FormValidation";
+import { ActionButton } from "./actionButton";
+import { FormValidation } from "../validation/formValidation";
 import { useCreateUser } from "../api/createUser";
 import { useSWRConfig } from "swr";
 import { SwrKey } from "../utility/SwrKey";

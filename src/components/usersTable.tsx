@@ -10,6 +10,7 @@ import {
   TableBody,
 } from "@mui/material";
 import { useGetAllUsers } from "../api/getAllUsers";
+import { EditUser } from "./editUser";
 
 export const UsersTable: FC = () => {
   const { data, isLoading } = useGetAllUsers();
@@ -21,7 +22,7 @@ export const UsersTable: FC = () => {
   return (
     <div className="pt-10 px-10 w-full">
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
               <TableCell>User Id</TableCell>
@@ -30,6 +31,7 @@ export const UsersTable: FC = () => {
               <TableCell>New Value</TableCell>
               <TableCell>Modified Date</TableCell>
               <TableCell>UserName</TableCell>
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -48,6 +50,9 @@ export const UsersTable: FC = () => {
                 <TableCell>{user.newValue ? user.newValue : "N/A"}</TableCell>
                 <TableCell>{user.timestamp ? user.timestamp : "N/A"}</TableCell>
                 <TableCell>{user.userName ? user.userName : "N/A"}</TableCell>
+                <TableCell align="left">
+                  <EditUser id={user.id} fullName={user.fullName} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
