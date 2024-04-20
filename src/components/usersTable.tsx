@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { useGetAllUsers } from "../api/getAllUsers";
 import { EditUser } from "./editUser";
+import moment from "moment";
 
 export const UsersTable: FC = () => {
   const { data, isLoading } = useGetAllUsers();
@@ -48,7 +49,11 @@ export const UsersTable: FC = () => {
                   {user.previousValue ? user.previousValue : "N/A"}
                 </TableCell>
                 <TableCell>{user.newValue ? user.newValue : "N/A"}</TableCell>
-                <TableCell>{user.timestamp ? user.timestamp : "N/A"}</TableCell>
+                <TableCell>
+                  {user.timestamp
+                    ? moment(user.timestamp).format("MMM Do YY")
+                    : "N/A"}
+                </TableCell>
                 <TableCell>{user.userName ? user.userName : "N/A"}</TableCell>
                 <TableCell align="left">
                   <EditUser id={user.id} fullName={user.fullName} />
